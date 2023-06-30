@@ -11,20 +11,32 @@ renderTodoList();
 function renderTodoList() {
   let todoListHtml = '';
 
-  for (let i = 0; i < todoList.length; i++) {
-    const todoItem = todoList[i];
+  todoList.forEach(function(todoItem, index) {
     const { name, dueDate } = todoItem;
     const html = `
     <div>${name}</div>
     <div>${dueDate}</div>
     <button onclick="
-      todoList.splice(${i}, 1);
+      todoList.splice(${index}, 1);
       renderTodoList();
     " class="delete-todo-btn">Delete</button>
     `;
     todoListHtml += html;
+  });
 
-  }
+  // for (let i = 0; i < todoList.length; i++) {
+  //   const todoItem = todoList[i];
+  //   const { name, dueDate } = todoItem;
+  //   const html = `
+  //   <div>${name}</div>
+  //   <div>${dueDate}</div>
+  //   <button onclick="
+  //     todoList.splice(${i}, 1);
+  //     renderTodoList();
+  //   " class="delete-todo-btn">Delete</button>
+  //   `;
+  //   todoListHtml += html;
+  // }
 
   document.querySelector('.js-todo-list').innerHTML = todoListHtml;
   }
